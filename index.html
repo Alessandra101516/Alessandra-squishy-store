@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ff8fc8">
+  <title>Alessandra Squishy Store</title>
+  <meta name="description" content="Alessandra Squishy Store — a playful pretend shop featuring Alessandra's squishy collection.">
+  <style>
+    :root {
+      --pink:#ff8fc8; --pink2:#ffd8ec; --purple:#d7c4ff; --mint:#cff6e6;
+      --yellow:#fff0a8; --ink:#5b4765; --white:#fffafd;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);
+      background:linear-gradient(135deg,#ffe8f3,#ece3ff 46%,#e6fff4);
+      min-height:100vh;
+    }
+    header{text-align:center;padding:34px 16px 20px}
+    .logo{
+      display:inline-block;background:#fff;padding:20px 28px;border-radius:34px;
+      box-shadow:0 10px 0 #e6b7d0,0 20px 35px rgba(90,66,102,.15)
+    }
+    h1{margin:0;color:#ff4fa3;font-size:clamp(2.1rem,7vw,4.6rem)}
+    .tagline{font-weight:700;margin:12px 0 0}
+    .topbar{
+      position:sticky;top:0;z-index:5;display:flex;justify-content:center;gap:10px;flex-wrap:wrap;
+      padding:12px 16px;background:rgba(255,255,255,.72);backdrop-filter:blur(10px)
+    }
+    .pill{border:0;border-radius:999px;padding:11px 17px;font-weight:800;background:#fff;color:var(--ink);box-shadow:0 4px 0 #dac8e7}
+    .cart{background:var(--yellow);cursor:pointer}
+    .hero{max-width:900px;margin:24px auto 6px;text-align:center;padding:0 18px}
+    .hero h2{font-size:clamp(1.6rem,4vw,2.8rem);color:#ff4fa3;margin-bottom:6px}
+    .shop{max-width:1180px;margin:auto;padding:20px 18px 55px;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px}
+    .card{background:rgba(255,255,255,.94);border-radius:28px;padding:14px;text-align:center;box-shadow:0 12px 0 rgba(187,154,210,.46),0 20px 35px rgba(90,66,102,.12);transition:.18s}
+    .card:hover{transform:translateY(-5px)}
+    .product-photo{width:100%;height:245px;object-fit:cover;border-radius:21px;display:block;background:#f4eef7}
+    .card h2{font-size:1.28rem;margin:14px 4px 7px}
+    .desc{font-size:.94rem;color:#786485;min-height:38px}
+    .price{font-size:1.35rem;font-weight:900;color:#ff4fa3;margin:8px 0 12px}
+    .buy{border:0;width:100%;padding:12px 16px;border-radius:17px;background:#ff73b5;color:#fff;font-weight:900;cursor:pointer;box-shadow:0 5px 0 #d94f94}
+    .buy:active{transform:translateY(4px);box-shadow:0 1px 0 #d94f94}
+    .notice{max-width:760px;margin:0 auto 45px;padding:18px;text-align:center;background:rgba(255,255,255,.82);border-radius:24px}
+    footer{text-align:center;padding:24px;font-weight:700}
+    #toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(100px);background:#5b4765;color:#fff;padding:13px 20px;border-radius:999px;opacity:0;transition:.22s;z-index:10;font-weight:800}
+    #toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <h1>Alessandra Squishy Store</h1>
+      <p class="tagline">✨ Cute • Soft • Super Squishy ✨</p>
+    </div>
+  </header>
+
+  <div class="topbar">
+    <div class="pill">🌈 Pretend Shop</div>
+    <div class="pill">💖 Alessandra's Collection</div>
+    <button class="pill cart" onclick="showCart()">🛒 Cart: <span id="count">0</span></button>
+  </div>
+
+  <section class="hero">
+    <h2>💗 Alessandra's Squishy Collection 💗</h2>
+    <p>Pick your favorites and add them to your pretend cart!</p>
+  </section>
+
+  <main class="shop">
+    
+    <article class="card">
+      <img class="product-photo" src="assets/image_2.jpg" alt="Jumbo Squish Surprise">
+      <h2>Jumbo Squish Surprise</h2>
+      <p class="desc">From Alessandra's squishy collection 💕</p>
+      <div class="price">$8.99</div>
+      <button class="buy" onclick="addToCart("Jumbo Squish Surprise")">Add to Cart</button>
+    </article>
+    
+
+    <article class="card">
+      <img class="product-photo" src="assets/IMG_0869.jpeg" alt="Star Confetti Jelly Squish">
+      <h2>Star Confetti Jelly Squish</h2>
+      <p class="desc">From Alessandra's squishy collection 💕</p>
+      <div class="price">$6.99</div>
+      <button class="buy" onclick="addToCart("Star Confetti Jelly Squish")">Add to Cart</button>
+    </article>
+    
+
+    <article class="card">
+      <img class="product-photo" src="assets/IMG_0870.jpeg" alt="NeeDoh Pizza Squish">
+      <h2>NeeDoh Pizza Squish</h2>
+      <p class="desc">From Alessandra's squishy collection 💕</p>
+      <div class="price">$7.99</div>
+      <button class="buy" onclick="addToCart("NeeDoh Pizza Squish")">Add to Cart</button>
+    </article>
+    
+
+    <article class="card">
+      <img class="product-photo" src="assets/IMG_0871.jpeg" alt="NeeDoh Mello Mallo Trio">
+      <h2>NeeDoh Mello Mallo Trio</h2>
+      <p class="desc">From Alessandra's squishy collection 💕</p>
+      <div class="price">$5.99 each</div>
+      <button class="buy" onclick="addToCart("NeeDoh Mello Mallo Trio")">Add to Cart</button>
+    </article>
+    
+
+    <article class="card">
+      <img class="product-photo" src="assets/IMG_0872.jpeg" alt="NeeDoh Cloud Pleaser">
+      <h2>NeeDoh Cloud Pleaser</h2>
+      <p class="desc">From Alessandra's squishy collection 💕</p>
+      <div class="price">$6.49</div>
+      <button class="buy" onclick="addToCart("NeeDoh Cloud Pleaser")">Add to Cart</button>
+    </article>
+    
+
+    <article class="card">
+      <img class="product-photo" src="assets/IMG_0873.jpeg" alt="NeeDoh Nice Cream Cone">
+      <h2>NeeDoh Nice Cream Cone</h2>
+      <p class="desc">From Alessandra's squishy collection 💕</p>
+      <div class="price">$7.49</div>
+      <button class="buy" onclick="addToCart("NeeDoh Nice Cream Cone")">Add to Cart</button>
+    </article>
+    
+
+    <article class="card">
+      <img class="product-photo" src="assets/IMG_0874.jpeg" alt="Blue Jelly Squish">
+      <h2>Blue Jelly Squish</h2>
+      <p class="desc">From Alessandra's squishy collection 💕</p>
+      <div class="price">$6.99</div>
+      <button class="buy" onclick="addToCart("Blue Jelly Squish")">Add to Cart</button>
+    </article>
+    
+
+    <article class="card">
+      <img class="product-photo" src="assets/IMG_0875.jpeg" alt="Pink Butterfly Squishy">
+      <h2>Pink Butterfly Squishy</h2>
+      <p class="desc">From Alessandra's squishy collection 💕</p>
+      <div class="price">$5.49</div>
+      <button class="buy" onclick="addToCart("Pink Butterfly Squishy")">Add to Cart</button>
+    </article>
+    
+
+    <article class="card">
+      <img class="product-photo" src="assets/IMG_0876.jpeg" alt="Pink Glitter Gelli Gel">
+      <h2>Pink Glitter Gelli Gel</h2>
+      <p class="desc">From Alessandra's squishy collection 💕</p>
+      <div class="price">$6.49</div>
+      <button class="buy" onclick="addToCart("Pink Glitter Gelli Gel")">Add to Cart</button>
+    </article>
+    
+
+    <article class="card">
+      <img class="product-photo" src="assets/IMG_0877.jpeg" alt="NeeDoh Nice Cube Duo">
+      <h2>NeeDoh Nice Cube Duo</h2>
+      <p class="desc">From Alessandra's squishy collection 💕</p>
+      <div class="price">$6.99 each</div>
+      <button class="buy" onclick="addToCart("NeeDoh Nice Cube Duo")">Add to Cart</button>
+    </article>
+    
+
+    <article class="card">
+      <img class="product-photo" src="assets/IMG_0878.jpeg" alt="NeeDoh Fuzz Ball Duo">
+      <h2>NeeDoh Fuzz Ball Duo</h2>
+      <p class="desc">From Alessandra's squishy collection 💕</p>
+      <div class="price">$5.99 each</div>
+      <button class="buy" onclick="addToCart("NeeDoh Fuzz Ball Duo")">Add to Cart</button>
+    </article>
+    
+
+    <article class="card">
+      <img class="product-photo" src="assets/IMG_0883.jpeg" alt="Blue Nice Cube">
+      <h2>Blue Nice Cube</h2>
+      <p class="desc">From Alessandra's squishy collection 💕</p>
+      <div class="price">$6.99</div>
+      <button class="buy" onclick="addToCart("Blue Nice Cube")">Add to Cart</button>
+    </article>
+    
+
+    <article class="card">
+      <img class="product-photo" src="assets/IMG_0882.jpeg" alt="Sloth Squishy">
+      <h2>Sloth Squishy</h2>
+      <p class="desc">From Alessandra's squishy collection 💕</p>
+      <div class="price">$8.49</div>
+      <button class="buy" onclick="addToCart("Sloth Squishy")">Add to Cart</button>
+    </article>
+    
+
+    <article class="card">
+      <img class="product-photo" src="assets/IMG_0881.jpeg" alt="Color Bubble Ball">
+      <h2>Color Bubble Ball</h2>
+      <p class="desc">From Alessandra's squishy collection 💕</p>
+      <div class="price">$5.49</div>
+      <button class="buy" onclick="addToCart("Color Bubble Ball")">Add to Cart</button>
+    </article>
+    
+
+    <article class="card">
+      <img class="product-photo" src="assets/IMG_0880.jpeg" alt="Collect Them All Glitter Cube">
+      <h2>Collect Them All Glitter Cube</h2>
+      <p class="desc">From Alessandra's squishy collection 💕</p>
+      <div class="price">$7.99</div>
+      <button class="buy" onclick="addToCart("Collect Them All Glitter Cube")">Add to Cart</button>
+    </article>
+    
+
+    <article class="card">
+      <img class="product-photo" src="assets/IMG_0879.jpeg" alt="Green Swirl Nice Cube">
+      <h2>Green Swirl Nice Cube</h2>
+      <p class="desc">From Alessandra's squishy collection 💕</p>
+      <div class="price">$6.99</div>
+      <button class="buy" onclick="addToCart("Green Swirl Nice Cube")">Add to Cart</button>
+    </article>
+    
+
+    <article class="card">
+      <img class="product-photo" src="assets/IMG_0888.jpeg" alt="Stay Groovy Glitter Heart">
+      <h2>Stay Groovy Glitter Heart</h2>
+      <p class="desc">From Alessandra's squishy collection 💕</p>
+      <div class="price">$6.49</div>
+      <button class="buy" onclick="addToCart("Stay Groovy Glitter Heart")">Add to Cart</button>
+    </article>
+    
+
+    <article class="card">
+      <img class="product-photo" src="assets/IMG_0887.jpeg" alt="Jelly Popsicle Squishy">
+      <h2>Jelly Popsicle Squishy</h2>
+      <p class="desc">From Alessandra's squishy collection 💕</p>
+      <div class="price">$5.99</div>
+      <button class="buy" onclick="addToCart("Jelly Popsicle Squishy")">Add to Cart</button>
+    </article>
+    
+
+    <article class="card">
+      <img class="product-photo" src="assets/IMG_0886.jpeg" alt="Pink Jumbo Squishy">
+      <h2>Pink Jumbo Squishy</h2>
+      <p class="desc">From Alessandra's squishy collection 💕</p>
+      <div class="price">$7.49</div>
+      <button class="buy" onclick="addToCart("Pink Jumbo Squishy")">Add to Cart</button>
+    </article>
+    
+
+    <article class="card">
+      <img class="product-photo" src="assets/IMG_0885.jpeg" alt="Mini Squishy Collection">
+      <h2>Mini Squishy Collection</h2>
+      <p class="desc">From Alessandra's squishy collection 💕</p>
+      <div class="price">$3.99 each</div>
+      <button class="buy" onclick="addToCart("Mini Squishy Collection")">Add to Cart</button>
+    </article>
+    
+
+    <article class="card">
+      <img class="product-photo" src="assets/IMG_0898.jpeg" alt="Blue Cat Squishy">
+      <h2>Blue Cat Squishy</h2>
+      <p class="desc">From Alessandra's squishy collection 💕</p>
+      <div class="price">$6.99</div>
+      <button class="buy" onclick="addToCart("Blue Cat Squishy")">Add to Cart</button>
+    </article>
+    
+
+    <article class="card">
+      <img class="product-photo" src="assets/IMG_0897.jpeg" alt="Blue Shark Squishy">
+      <h2>Blue Shark Squishy</h2>
+      <p class="desc">From Alessandra's squishy collection 💕</p>
+      <div class="price">$7.49</div>
+      <button class="buy" onclick="addToCart("Blue Shark Squishy")">Add to Cart</button>
+    </article>
+    
+
+    <article class="card">
+      <img class="product-photo" src="assets/IMG_0896.jpeg" alt="Sprinkle Cake Squishy">
+      <h2>Sprinkle Cake Squishy</h2>
+      <p class="desc">From Alessandra's squishy collection 💕</p>
+      <div class="price">$7.99</div>
+      <button class="buy" onclick="addToCart("Sprinkle Cake Squishy")">Add to Cart</button>
+    </article>
+    
+
+    <article class="card">
+      <img class="product-photo" src="assets/IMG_0895.jpeg" alt="Rainbow Bird Squishy">
+      <h2>Rainbow Bird Squishy</h2>
+      <p class="desc">From Alessandra's squishy collection 💕</p>
+      <div class="price">$7.49</div>
+      <button class="buy" onclick="addToCart("Rainbow Bird Squishy")">Add to Cart</button>
+    </article>
+    
+
+    <article class="card">
+      <img class="product-photo" src="assets/IMG_0894.jpeg" alt="Blue Jelly Drop">
+      <h2>Blue Jelly Drop</h2>
+      <p class="desc">From Alessandra's squishy collection 💕</p>
+      <div class="price">$5.99</div>
+      <button class="buy" onclick="addToCart("Blue Jelly Drop")">Add to Cart</button>
+    </article>
+    
+
+    <article class="card">
+      <img class="product-photo" src="assets/IMG_0893.jpeg" alt="Salted Butter Squishy">
+      <h2>Salted Butter Squishy</h2>
+      <p class="desc">From Alessandra's squishy collection 💕</p>
+      <div class="price">$6.49</div>
+      <button class="buy" onclick="addToCart("Salted Butter Squishy")">Add to Cart</button>
+    </article>
+    
+
+    <article class="card">
+      <img class="product-photo" src="assets/IMG_0892.jpeg" alt="Swiss Cheese Squishy">
+      <h2>Swiss Cheese Squishy</h2>
+      <p class="desc">From Alessandra's squishy collection 💕</p>
+      <div class="price">$6.49</div>
+      <button class="buy" onclick="addToCart("Swiss Cheese Squishy")">Add to Cart</button>
+    </article>
+    
+
+    <article class="card">
+      <img class="product-photo" src="assets/IMG_0891.jpeg" alt="Banana Squishy">
+      <h2>Banana Squishy</h2>
+      <p class="desc">From Alessandra's squishy collection 💕</p>
+      <div class="price">$7.99</div>
+      <button class="buy" onclick="addToCart("Banana Squishy")">Add to Cart</button>
+    </article>
+    
+
+    <article class="card">
+      <img class="product-photo" src="assets/IMG_0890.jpeg" alt="Blue Dino Squishy">
+      <h2>Blue Dino Squishy</h2>
+      <p class="desc">From Alessandra's squishy collection 💕</p>
+      <div class="price">$7.49</div>
+      <button class="buy" onclick="addToCart("Blue Dino Squishy")">Add to Cart</button>
+    </article>
+    
+
+    <article class="card">
+      <img class="product-photo" src="assets/IMG_0889.jpeg" alt="Carrot Squishy">
+      <h2>Carrot Squishy</h2>
+      <p class="desc">From Alessandra's squishy collection 💕</p>
+      <div class="price">$7.49</div>
+      <button class="buy" onclick="addToCart("Carrot Squishy")">Add to Cart</button>
+    </article>
+    
+  </main>
+
+  <section class="notice">
+    <strong>Just for fun 💕</strong><br>
+    Alessandra Squishy Store is a pretend shop. No real purchases or payments are made.
+  </section>
+
+  <footer>Made with 💗 for Alessandra</footer>
+  <div id="toast"></div>
+
+  <script>
+    let count = 0;
+    const items = [];
+    function addToCart(name){
+      count++;
+      items.push(name);
+      document.getElementById('count').textContent = count;
+      toast(name + ' added to your pretend cart! 💖');
+    }
+    function showCart(){
+      if(items.length === 0) toast('Your pretend cart is empty! 🛒');
+      else toast('You have ' + count + ' item' + (count===1?'':'s') + ' in your pretend cart! ✨');
+    }
+    function toast(message){
+      const t = document.getElementById('toast');
+      t.textContent = message;
+      t.classList.add('show');
+      clearTimeout(window.toastTimer);
+      window.toastTimer = setTimeout(()=>t.classList.remove('show'),1800);
+    }
+  </script>
+</body>
+</html>
